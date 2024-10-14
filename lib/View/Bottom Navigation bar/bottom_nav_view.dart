@@ -6,7 +6,8 @@ import 'package:afosh_club/View/ProfileScreen/profile.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavView extends StatefulWidget {
-  const BottomNavView({super.key});
+  final data;
+  BottomNavView({super.key, this.data});
 
   @override
   State<BottomNavView> createState() => _BottomNavViewState();
@@ -14,12 +15,20 @@ class BottomNavView extends StatefulWidget {
 
 class _BottomNavViewState extends State<BottomNavView> {
   var _currentIndex = 0;
-  List screens = [
-    const HomeScreen(),
-    const BookingScreen(),
-    const MessageScreen(),
-    const ProfileScreen(),
-  ];
+  late List screens ;
+  @override
+  void initState() {
+    super.initState();
+
+    screens = [
+      HomeScreen(
+        data: widget.data,
+      ),
+      const BookingScreen(),
+      const MessageScreen(),
+      const ProfileScreen(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,17 +113,14 @@ class CustomNavItem extends StatelessWidget {
         width: 50,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: currentIndex != index
-              ? Colors.transparent
-              : AppTheme.appColor,
+          color: currentIndex != index ? Colors.transparent : AppTheme.appColor,
         ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Image.asset(
             iconPath,
-            color: currentIndex == index
-                ? AppTheme.whiteColor
-                : AppTheme.appColor,
+            color:
+                currentIndex == index ? AppTheme.whiteColor : AppTheme.appColor,
             height: 24,
           ),
         ),

@@ -1,5 +1,5 @@
 class AppUrls {
-  static const String baseUrl = "https://hr.digitalmandee.com/api/";
-  static const String logIn = "login";
+  static const String baseUrl = "http://192.168.0.111:8000/api/";
+  static const String logIn = "app/memberData";
 
 }

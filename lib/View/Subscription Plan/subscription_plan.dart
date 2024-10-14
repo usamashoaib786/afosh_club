@@ -30,7 +30,7 @@ class _SubscriptionPlanScreenState extends State<SubscriptionPlanScreen> {
               ),
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
+                itemCount: 1,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Padding(
@@ -55,26 +55,13 @@ class _SubscriptionPlanScreenState extends State<SubscriptionPlanScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  height: 19,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(11),
-                                    color: AppTheme.appColor,
-                                  ),
-                                  child: Center(
-                                    child: AppText.appText("Most Popular",
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w400,
-                                        textColor: AppTheme.whiteColor),
-                                  ),
-                                ),
+                              
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    AppText.appText("Silver Plan",
-                                        fontSize: 30,
+                                    AppText.appText("Sports Subscription",
+                                        fontSize: 20,
                                         fontWeight: FontWeight.w700,
                                         textColor: AppTheme.black),
                                     AppText.appText("5000 pkr",

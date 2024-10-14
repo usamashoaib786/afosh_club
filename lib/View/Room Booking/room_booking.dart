@@ -3,15 +3,24 @@ import 'package:afosh_club/Utils/widgets/others/app_button.dart';
 import 'package:afosh_club/Utils/widgets/others/app_text.dart';
 import 'package:afosh_club/Utils/widgets/others/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class RoomBookingScreen extends StatefulWidget {
-  const RoomBookingScreen({super.key});
+  final data;
+  const RoomBookingScreen({super.key,required this.data});
 
   @override
   State<RoomBookingScreen> createState() => _RoomBookingScreenState();
 }
 
 class _RoomBookingScreenState extends State<RoomBookingScreen> {
+  var roomData;
+  @override
+  void initState() {
+    super.initState();
+    roomData = widget.data["bookings"];
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +40,7 @@ class _RoomBookingScreenState extends State<RoomBookingScreen> {
               ),
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
+                itemCount: roomData.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Padding(
@@ -67,14 +76,14 @@ class _RoomBookingScreenState extends State<RoomBookingScreen> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    AppText.appText("Deluxe King Room",
+                                    AppText.appText("${roomData[index]["category"]["desc"]}",
                                         fontSize: 18,
                                         fontWeight: FontWeight.w700,
                                         textColor: AppTheme.black),
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    AppText.appText("Room No: 220",
+                                    AppText.appText("Room No:${roomData[index]["room"]["room_no"]}",
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
                                         textColor: AppTheme.textAB),
@@ -94,7 +103,7 @@ class _RoomBookingScreenState extends State<RoomBookingScreen> {
                                     const SizedBox(
                                       width: 5,
                                     ),
-                                    AppText.appText("Thursday, 13 September",
+                                    AppText.appText(formatDate("${roomData[index]["booking_date"]}"),
                                         fontSize: 12,
                                         fontWeight: FontWeight.w400,
                                         textColor: AppTheme.appColor),
@@ -144,4 +153,8 @@ class _RoomBookingScreenState extends State<RoomBookingScreen> {
       ),
     );
   }
+  String formatDate(String dateStr) {
+  DateTime dateTime = DateTime.parse(dateStr); // Convert string to DateTime
+  return DateFormat('EEEE, d MMMM').format(dateTime); // Format it to "Thursday, 13 September"
+}
 }

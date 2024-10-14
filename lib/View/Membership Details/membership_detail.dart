@@ -1,10 +1,12 @@
+import 'package:afosh_club/Utils/global.dart';
 import 'package:afosh_club/Utils/resources/res/app_theme.dart';
 import 'package:afosh_club/Utils/widgets/others/app_text.dart';
 import 'package:afosh_club/Utils/widgets/others/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class MemberShipDetailScreen extends StatefulWidget {
-  const MemberShipDetailScreen({super.key});
+  final data;
+  const MemberShipDetailScreen({super.key, this.data});
 
   @override
   State<MemberShipDetailScreen> createState() => _MemberShipDetailScreenState();
@@ -30,15 +32,24 @@ class _MemberShipDetailScreenState extends State<MemberShipDetailScreen> {
     "Renew Fees",
     "Membership Type",
   ];
-  List txt2 = [
-    "+92-313-4598073",
-    "35202-1353041-1",
-    "24-07-2023",
-    "24-07-2024",
-    "25,000Pkr",
-    "25,000Pkr",
-    "Premium Membership",
+   List txt2 = [];
+ @override
+  void initState() {
+    super.initState();
+
+    txt2 = [
+    "${widget.data["mob_a"]}",
+    "${widget.data["cnic"]}",
+    "${widget.data["membership_date"]}",
+    "${widget.data["to"]}",
+    "${widget.data["mem_fee"]}",
+    "${widget.data["mem_fee"]}",
+    "${widget.data["membership_date"]}",
+ 
   ];
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,12 +71,12 @@ class _MemberShipDetailScreenState extends State<MemberShipDetailScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10.0, bottom:5),
-              child: AppText.appText("Usama Shoaib",
+              child: AppText.appText("${widget.data["applicant_name"]}",
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                   textColor: AppTheme.blackText),
             ),
-            AppText.appText("ID-98747845687",
+            AppText.appText("ID-${widget.data["mem_no"]}",
                 fontSize: 13,
                 fontWeight: FontWeight.w400,
                 textColor: AppTheme.textAB),

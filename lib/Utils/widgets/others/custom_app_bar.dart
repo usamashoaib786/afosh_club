@@ -22,10 +22,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   GestureDetector(
                     onTap: onBackTap,
-                    child: Image.asset(
-                      'assets/images/backArrow.png',
-                      height: 24.0,
-                      width: 15.0,
+                    child: SizedBox(
+                      height:24 ,
+                      child: Image.asset(
+                        'assets/images/backArrow.png',
+                        height: 24.0,
+                        width: 15.0,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 20.0),

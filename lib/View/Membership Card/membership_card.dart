@@ -4,7 +4,8 @@ import 'package:afosh_club/Utils/widgets/others/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class MemberShipCardScreen extends StatefulWidget {
-  const MemberShipCardScreen({super.key});
+  final data;
+  const MemberShipCardScreen({super.key, this.data});
 
   @override
   State<MemberShipCardScreen> createState() => _MemberShipCardScreenState();
@@ -26,12 +27,8 @@ class _MemberShipCardScreenState extends State<MemberShipCardScreen> {
             const SizedBox(
               height: 20,
             ),
-            ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 5,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Container(
+
+            Container(
                   margin:
                       const EdgeInsets.only(left: 20, right: 20, bottom: 20),
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -51,8 +48,8 @@ class _MemberShipCardScreenState extends State<MemberShipCardScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              AppText.appText("VIP Card",
-                                  fontSize: 28,
+                              AppText.appText("Membership Card",
+                                  fontSize: 25,
                                   fontWeight: FontWeight.w700,
                                   textColor: AppTheme.whiteColor),
                               const SizedBox(
@@ -60,7 +57,7 @@ class _MemberShipCardScreenState extends State<MemberShipCardScreen> {
                               ),
                               Container(
                                 height: 1,
-                                width: 131,
+                                width: 150,
                                 color: AppTheme.whiteColor,
                               ),
                             ],
@@ -76,11 +73,11 @@ class _MemberShipCardScreenState extends State<MemberShipCardScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              AppText.appText("Usama Shoaib",
+                              AppText.appText("${widget.data["applicant_name"]}",
                                   fontSize: 20,
                                   fontWeight: FontWeight.w700,
                                   textColor: AppTheme.whiteColor),
-                              AppText.appText("Renew Date",
+                              AppText.appText("Card Expiry",
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   textColor: AppTheme.whiteColor),
@@ -89,11 +86,11 @@ class _MemberShipCardScreenState extends State<MemberShipCardScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              AppText.appText("ID-98747845687",
+                              AppText.appText("${widget.data["mem_no"]}",
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
                                   textColor: AppTheme.whiteColor),
-                              AppText.appText("16-09-2024",
+                              AppText.appText("${widget.data["card_exp"]}",
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
                                   textColor: AppTheme.whiteColor),
@@ -103,9 +100,7 @@ class _MemberShipCardScreenState extends State<MemberShipCardScreen> {
                       )
                     ],
                   ),
-                );
-              },
-            ),
+                )
           ],
         ),
       ),
